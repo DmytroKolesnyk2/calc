@@ -17,9 +17,7 @@
 
 - (IBAction)unaryOperations:(UIButton *)button;
 - (IBAction)allClear:(UIButton *)button;
-- (IBAction)inverse:(UIButton *)button;
-- (IBAction)percent:(UIButton *)button;
-- (IBAction)operation:(UIButton *)button;
+- (IBAction)binaryOperation:(UIButton *)button;
 - (IBAction)num:(UIButton *)button;
 - (IBAction)dotPressed:(UIButton*)button;
 @end
