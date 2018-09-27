@@ -26,6 +26,7 @@
                                 <rect key="frame" x="54" y="0.0" width="788" height="100"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="eIM-C2-Ewm"/>
                                     <constraint firstAttribute="height" priority="999" constant="200" id="np4-9S-ddg"/>
@@ -39,6 +40,11 @@
                                         <exclude reference="np4-9S-ddg"/>
                                     </mask>
                                 </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="eIM-C2-Ewm"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular">
                                     <mask key="constraints">
                                         <include reference="np4-9S-ddg"/>
@@ -46,13 +52,7 @@
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="eIM-C2-Ewm"/>
                                         <exclude reference="np4-9S-ddg"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="eIM-C2-Ewm"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -60,6 +60,9 @@
                                         <include reference="np4-9S-ddg"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="xaU-bk-wcL" appends="YES" id="Gua-DU-E3m"/>
+                                </connections>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HMd-b3-0bE">
                                 <rect key="frame" x="54" y="110" width="468" height="273"/>
@@ -164,6 +167,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="secondPartOfScreenButton:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="AAl-Ve-p8O"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="26" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJz-xY-GdC">
                                                 <rect key="frame" x="79.666666666666657" y="0.0" width="69.666666666666657" height="46.666666666666664"/>
@@ -305,6 +311,7 @@
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="binaryOperation:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="ECK-0U-XiO"/>
                                                     <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="y9i-ac-2Ok"/>
                                                 </connections>
                                             </button>
@@ -312,7 +319,7 @@
                                                 <rect key="frame" x="398.33333333333331" y="0.0" width="69.666666666666686" height="46.333333333333336"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <state key="normal" title="log10">
+                                                <state key="normal" title="log₁₀">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
@@ -347,12 +354,13 @@
                                                 <rect key="frame" x="79.666666666666657" y="0.0" width="69.666666666666657" height="46.666666666666664"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="sin">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="Gmk-2G-Wzh"/>
+                                                    <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="H6l-Jt-wQU"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="39" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPa-Wv-sfZ">
@@ -364,7 +372,7 @@
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="GDn-eN-Aed"/>
+                                                    <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="eDa-9g-aiv"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="40" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkC-NK-kh6">
@@ -382,7 +390,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="6bu-I3-pvt"/>
+                                                    <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="lZh-h5-jeM"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="41" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osc-6L-b81">
@@ -428,6 +436,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="changeRadiansToDegrees:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="ycO-Bc-iXA"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="44" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTD-u5-fUX">
                                                 <rect key="frame" x="79.666666666666657" y="0.0" width="69.666666666666657" height="46.666666666666664"/>
@@ -438,7 +449,7 @@
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="ZTO-oY-VFG"/>
+                                                    <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="hj0-HF-ikN"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="45" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xG-jc-s9G">
@@ -450,7 +461,7 @@
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="vxX-9d-0Kc"/>
+                                                    <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="vVD-zu-rCI"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="46" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5a3-n4-ogW">
@@ -468,7 +479,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="MqM-hj-qf8"/>
+                                                    <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="js8-El-X7W"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="47" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQu-ar-9be">
@@ -867,6 +878,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3OL-dS-HHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="xaU-bk-wcL">
+                    <connections>
+                        <action selector="swipeLeftForDeleteLastEnteredNumberAction:" destination="bD4-m2-Oz1" id="Eer-hw-UKO"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1355.3571428571429" y="-200.00000000000003"/>
         </scene>

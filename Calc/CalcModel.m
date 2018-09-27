@@ -8,6 +8,8 @@
 
 #import "CalcModel.h"
 #import <math.h>
+#define DEGREES(radians) (radians * 180 / M_PI)
+#define RADIANS(degrees) (degrees * M_PI / 180)
 
 @interface CalcModel()
 
@@ -22,6 +24,10 @@
     self.memory = operand;
     self.accumulator = operand;
 }
+
+double (^percentOperation)(double) = ^(double operand){
+    return operand * 0.01;
+};
 
 -(double) percentOperation: (double) operand{
     return operand * 0.01;
@@ -72,18 +78,30 @@
 }
 
 -(double)sinusOperation: (double) operand{
-    return sin(operand);
+    return sin(RADIANS(operand));
+}
+
+-(double)arcsinOperation: (double) operand{
+    return DEGREES(asin(operand));
 }
 
 -(double)cosinusOperation: (double) operand{
-    return cos(operand);
+    return cos(RADIANS(operand));
+}
+
+-(double)arccosOperation: (double) operand{
+    return DEGREES(acos(operand));
 }
 
 -(double)tangentOperation: (double) operand{
-    return tan(operand);
+    return tan(RADIANS(operand));
 }
 
--(double)exponentaOperation: (double) operand{
+-(double)arctangentOperation: (double) operand{
+    return DEGREES(atan(operand));
+}
+
+-(double)exponentaOperation{
     return M_E;
 }
 
@@ -91,20 +109,30 @@
     return sinh(operand);
 }
 
+-(double)hyperbolicArcsinOperation: (double) operand{
+    return DEGREES(asinh(operand));
+}
+
 -(double)hyperbolicCosinusOperation: (double) operand{
     return cosh(operand);
+}
+
+-(double)hyperbolicArccosOperation:(double)operand{
+    return DEGREES(acosh(operand));
 }
 
 -(double)hyperbolicTangentOperation: (double) operand{
     return tanh(operand);
 }
 
--(double)piOperation: (double) operand{
+-(double)hyperbolicArctanOperation:(double)operand{
+    return DEGREES(atanh(operand));
+}
+
+-(double)piOperation{
     return M_PI;
 }
 -(double)randomNumberOperation{
-    //Спросить по поводу time
-//    srand48(time(0));
     return drand48();
 }
 
@@ -167,8 +195,26 @@
 }
 
 
+-(double)yPowerOfXOperation:(double)operand{
+    return pow(operand, _accumulator);
+}
+
+-(double)twoPowerOfXOperation:(double)operand{
+    return pow(2, operand);
+}
+
+-(double)yLogarithmOperation:(double)operand{
+    return log(_accumulator)/log(operand);
+}
+
+-(double)twoLogarithmOperation:(double)operand{
+    return log2(operand);
+}
+
 -(double)result{
     return self.accumulator;
 }
+
+//-(NSString*)historyOfCalculator(NSString*) 
 
 @end

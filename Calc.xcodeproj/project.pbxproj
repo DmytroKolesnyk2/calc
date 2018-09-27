@@ -13,6 +13,7 @@
 		685FAB7721426EC900944C0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 685FAB7621426EC900944C0A /* Assets.xcassets */; };
 		685FAB7D21426EC900944C0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 685FAB7C21426EC900944C0A /* main.m */; };
 		689C92A721490B7500433C51 /* CalcModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 689C92A621490B7500433C51 /* CalcModel.m */; };
+		689F9E0A215D00F4009939DA /* RoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 689F9E09215D00F4009939DA /* RoundViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		685FAB7C21426EC900944C0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		689C92A521490B7500433C51 /* CalcModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalcModel.h; sourceTree = "<group>"; };
 		689C92A621490B7500433C51 /* CalcModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalcModel.m; sourceTree = "<group>"; };
+		689F9E09215D00F4009939DA /* RoundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundViewController.m; sourceTree = "<group>"; };
+		689F9E0B215D0122009939DA /* RoundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				685FAB7621426EC900944C0A /* Assets.xcassets */,
 				685FAB7B21426EC900944C0A /* Info.plist */,
 				685FAB7C21426EC900944C0A /* main.m */,
+				689F9E09215D00F4009939DA /* RoundViewController.m */,
+				689F9E0B215D0122009939DA /* RoundViewController.h */,
 			);
 			path = Calc;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			files = (
 				685FAB7221426EC700944C0A /* ViewController.m in Sources */,
 				685FAB7D21426EC900944C0A /* main.m in Sources */,
+				689F9E0A215D00F4009939DA /* RoundViewController.m in Sources */,
 				689C92A721490B7500433C51 /* CalcModel.m in Sources */,
 				685FAB6F21426EC700944C0A /* AppDelegate.m in Sources */,
 			);

@@ -30,11 +30,11 @@
 -(double)sinusOperation: (double) operand;
 -(double)cosinusOperation: (double) operand;
 -(double)tangentOperation: (double) operand;
--(double)exponentaOperation: (double) operand;
+-(double)exponentaOperation;
 -(double)hyperbolicSinusOperation: (double) operand;
 -(double)hyperbolicCosinusOperation: (double) operand;
 -(double)hyperbolicTangentOperation: (double) operand;
--(double)piOperation: (double) operand;
+-(double)piOperation;
 -(double)randomNumberOperation;
 -(double)operationPlus: (double) operand;
 -(double) operationMinus: (double) operand;
@@ -46,6 +46,22 @@
 -(double) memoryAddOperation: (double) operand;
 -(double) memorySubstractOperation: (double) operand;
 -(double) memoryRecallOperation;
+
+
+//second displays button
+-(double)arcsinOperation: (double) operand;
+-(double)arccosOperation: (double) operand;
+-(double)arctangentOperation: (double) operand;
+-(double)hyperbolicArcsinOperation: (double) operand;
+-(double)hyperbolicArccosOperation:(double)operand;
+-(double)hyperbolicArctanOperation:(double)operand;
+-(double)yPowerOfXOperation: (double) operand;
+-(double)twoPowerOfXOperation: (double) operand;
+-(double)twoLogarithmOperation: (double) operand;
+-(double)yLogarithmOperation: (double) operand;
+
+
+
 
 @end
 
