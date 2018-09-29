@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "CalcModel.h"
+#import "CalculatorController.h"
 
 //операции для кейса по тагам
 enum{
@@ -64,6 +65,8 @@ enum{
 
 @property (strong, nonatomic) CalcModel *calculator;
 
+@property (strong, nonatomic) CalculatorController *controller;
+
 @end
 
 @implementation ViewController
@@ -75,10 +78,18 @@ enum{
     return _calculator;
 }
 
+-(CalculatorController*)controller{
+    if (!_controller) {
+        _controller = [CalculatorController new];
+    }
+    return _controller;
+}
+
 - (void)viewDidLoad {
     [self calculator];
     [super viewDidLoad];
     self.displayLabel.userInteractionEnabled = YES;
+
 }
 
 
@@ -102,7 +113,7 @@ enum{
     _dotCounter = 0;
     _doubleOperation = NO;
     
-    [self displayTable];
+    [self labelText];
     
 }
 
@@ -123,21 +134,23 @@ enum{
             _inputDigitX = [_calculator cubeOperation: _inputDigitX];
             break;
         case exponentaPower:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator yPowerOfXOperation:_inputDigitX] : [_calculator exponentaPowerOperation: _inputDigitX];
+            if (!button.isSelected) {
+                _inputDigitX = [_calculator exponentaPowerOperation: _inputDigitX];
+            }
             break;
         case tenPower:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator twoPowerOfXOperation:_inputDigitX] : [_calculator twoPowerOfXOperation: _inputDigitX];
+            _inputDigitX = button.isSelected ? [_calculator twoPowerOfXOperation:_inputDigitX] : [_calculator twoPowerOfXOperation: _inputDigitX];
             break;
         case oneDivideX:
             _inputDigitX = [_calculator oneDivideXOperation: _inputDigitX];
             break;
         case naturalLogarithm:
-            if (!_isSecondDisplayButtonPressed) {
+            if (!button.isSelected) {
                 _inputDigitX = [_calculator naturalLogarithmOperation: _inputDigitX];
             }
             break;
         case tenLogarithm:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator twoLogarithmOperation:_inputDigitX] : [_calculator tenLogarithmOperation: _inputDigitX];
+            _inputDigitX = button.isSelected ? [_calculator twoLogarithmOperation:_inputDigitX] : [_calculator tenLogarithmOperation: _inputDigitX];
             break;
         case factorial:
             _inputDigitX = [_calculator factorialOperation: _inputDigitX];
@@ -175,10 +188,15 @@ enum{
         if (!_operationEnter) {
             switch (_operation) {
                 case naturalLogarithm:
-                    if (_isSecondDisplayButtonPressed) {
+                    if (!button.isSelected) {
                         _inputDigitX = [_calculator yLogarithmOperation: _inputDigitX];
                     }
                 break;
+                case exponentaPower:
+                    if (!button.isSelected) {
+                        _inputDigitX = [_calculator yPowerOfXOperation: _inputDigitX];
+                    }
+                    break;
                 case plus:
                     _inputDigitX = [_calculator operationPlus: _inputDigitX];
                     break;
@@ -223,22 +241,22 @@ enum{
     _operation = [button tag];
     switch (_operation) {
         case sinus:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator arcsinOperation:_inputDigitX] : [_calculator sinusOperation: _inputDigitX];
+            _inputDigitX = button.isSelected ? [_calculator arcsinOperation:_inputDigitX] : [_calculator sinusOperation: _inputDigitX];
             break;
         case cosinus:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator arccosOperation:_inputDigitX] : [_calculator cosinusOperation: _inputDigitX];
+            _inputDigitX = button.isSelected ? [_calculator arccosOperation:_inputDigitX] : [_calculator cosinusOperation: _inputDigitX];
             break;
         case tangent:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator arctangentOperation:_inputDigitX] : [_calculator tangentOperation: _inputDigitX];
+            _inputDigitX = button.isSelected ? [_calculator arctangentOperation:_inputDigitX] : [_calculator tangentOperation: _inputDigitX];
             break;
         case hyperbolicSinus:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator hyperbolicArcsinOperation:_inputDigitX] : [_calculator hyperbolicSinusOperation: _inputDigitX];
+            _inputDigitX = button.isSelected ? [_calculator hyperbolicArcsinOperation:_inputDigitX] : [_calculator hyperbolicSinusOperation: _inputDigitX];
             break;
         case hyperbolicCosinus:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator hyperbolicArccosOperation:_inputDigitX] : [_calculator hyperbolicCosinusOperation: _inputDigitX];
+            _inputDigitX = button.isSelected ? [_calculator hyperbolicArccosOperation:_inputDigitX] : [_calculator hyperbolicCosinusOperation: _inputDigitX];
             break;
         case hyperbolicTangent:
-            _inputDigitX = _isSecondDisplayButtonPressed ? [_calculator hyperbolicArctanOperation:_inputDigitX] : [_calculator hyperbolicTangentOperation: _inputDigitX];
+            _inputDigitX = button.isSelected ? [_calculator hyperbolicArctanOperation:_inputDigitX] : [_calculator hyperbolicTangentOperation: _inputDigitX];
             break;
         default:
             break;
@@ -247,58 +265,30 @@ enum{
 }
 
 - (IBAction)secondPartOfScreenButton:(UIButton *)button {
-    if (!_isSecondDisplayButtonPressed) {
-        button.backgroundColor = UIColor.grayColor;
-        [self changeButtonTitle: button];
-        _isSecondDisplayButtonPressed = YES;
+    if (!button.isSelected) {
+        [button setSelected: YES];
+        button.backgroundColor = UIColor.lightGrayColor;
+        button.tintColor = UIColor.lightGrayColor;
+        [self changeButtonState: button];
     } else {
+        [button setSelected: NO];
         button.backgroundColor = UIColor.viewFlipsideBackgroundColor;
-        [self changeButtonTitle: button];
-        _isSecondDisplayButtonPressed = NO;
+        button.tintColor = UIColor.viewFlipsideBackgroundColor;
+        [self changeButtonState: button];
     }
 }
 
--(void) changeTitle: (NSString*) title ForButton: (UIButton*) button ForState: (UIControlState) state{
-//    NSDictionary *dictionaryTag = [NSDictionary dictionaryWithObjects:array forKeys:title count:2];
-    return [button setTitle: title forState:UIControlStateNormal];
-}
-
-- (void) changeButtonTitle: (UIButton*)button {
+- (void) changeButtonState: (UIButton*)button {
     NSArray *array = @[@29, @30, @35, @36, @38, @39, @40, @44, @45, @46];
     for (NSNumber* buttonTag in array) {
-            button = [self.view viewWithTag: buttonTag.integerValue];
-            [self changeTitle:@" " ForButton:button ForState:UIControlStateSelected];
-            switch ([button tag]) {
-                case exponentaPower:
-                    [self changeTitle:(!_isSecondDisplayButtonPressed ? @"yˣ" : @"eˣ") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case tenPower:
-                    [self changeTitle:(!_isSecondDisplayButtonPressed ? @"2ˣ" : @"10ˣ") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case naturalLogarithm:
-                     [self changeTitle:(!_isSecondDisplayButtonPressed ? @"log𝙮" : @"ln") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case tenLogarithm:
-                     [self changeTitle:(!_isSecondDisplayButtonPressed ? @"log₂" : @"log₁₀") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case sinus:
-                    [self changeTitle:(!_isSecondDisplayButtonPressed ? @"asin" : @"sin") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case cosinus:
-                    [self changeTitle:(!_isSecondDisplayButtonPressed ? @"acos" : @"cos") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case tangent:
-                    [self changeTitle:(!_isSecondDisplayButtonPressed ? @"atan" : @"tan") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case hyperbolicSinus:
-                    [self changeTitle:(!_isSecondDisplayButtonPressed ? @"asinh" : @"asin") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case hyperbolicCosinus:
-                    [self changeTitle:(!_isSecondDisplayButtonPressed ? @"acosh" : @"acos") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
-                case hyperbolicTangent:
-                    [self changeTitle:(!_isSecondDisplayButtonPressed ? @"atanh" : @"tanh") ForButton:button ForState:(!_isSecondDisplayButtonPressed ? UIControlStateSelected : UIControlStateNormal)];
-                    break;
+        button = [self.view viewWithTag: buttonTag.integerValue];
+        if (!button.isSelected) {
+            [button setSelected:YES];
+            button.backgroundColor = UIColor.viewFlipsideBackgroundColor;
+            button.tintColor = UIColor.viewFlipsideBackgroundColor;
+            [button setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
+        } else {
+            [button setSelected:NO];
         }
     }
 }

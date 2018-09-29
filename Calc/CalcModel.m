@@ -25,10 +25,6 @@
     self.accumulator = operand;
 }
 
-double (^percentOperation)(double) = ^(double operand){
-    return operand * 0.01;
-};
-
 -(double) percentOperation: (double) operand{
     return operand * 0.01;
 }
@@ -110,7 +106,7 @@ double (^percentOperation)(double) = ^(double operand){
 }
 
 -(double)hyperbolicArcsinOperation: (double) operand{
-    return DEGREES(asinh(operand));
+    return asinh(operand);
 }
 
 -(double)hyperbolicCosinusOperation: (double) operand{
@@ -118,7 +114,7 @@ double (^percentOperation)(double) = ^(double operand){
 }
 
 -(double)hyperbolicArccosOperation:(double)operand{
-    return DEGREES(acosh(operand));
+    return acosh(operand);
 }
 
 -(double)hyperbolicTangentOperation: (double) operand{
@@ -126,7 +122,7 @@ double (^percentOperation)(double) = ^(double operand){
 }
 
 -(double)hyperbolicArctanOperation:(double)operand{
-    return DEGREES(atanh(operand));
+    return atanh(operand);
 }
 
 -(double)piOperation{

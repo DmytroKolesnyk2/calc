@@ -157,9 +157,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="69.666666666666671" height="46.666666666666664"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 <state key="normal" title="2nd">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <state key="selected">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.radiusRound">
@@ -221,7 +225,9 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="yˣ"/>
                                                 <connections>
+                                                    <action selector="binaryOperation:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="LOu-aZ-se5"/>
                                                     <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="eRa-tM-Zpn"/>
                                                 </connections>
                                             </button>
@@ -233,6 +239,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="2ˣ"/>
                                                 <connections>
                                                     <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="t0o-vt-7LL"/>
                                                 </connections>
@@ -310,6 +317,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="log𝙮"/>
                                                 <connections>
                                                     <action selector="binaryOperation:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="ECK-0U-XiO"/>
                                                     <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="y9i-ac-2Ok"/>
@@ -323,6 +331,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="log₂"/>
                                                 <connections>
                                                     <action selector="unaryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="atl-ly-Bif"/>
                                                 </connections>
@@ -354,11 +363,11 @@
                                                 <rect key="frame" x="79.666666666666657" y="0.0" width="69.666666666666657" height="46.666666666666664"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="sin">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="asin"/>
                                                 <connections>
                                                     <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="H6l-Jt-wQU"/>
                                                 </connections>
@@ -371,6 +380,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="acos"/>
                                                 <connections>
                                                     <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="eDa-9g-aiv"/>
                                                 </connections>
@@ -383,6 +393,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="atan"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.radiusRound">
                                                         <integer key="value" value="50"/>
@@ -448,6 +459,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="asinh"/>
                                                 <connections>
                                                     <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="hj0-HF-ikN"/>
                                                 </connections>
@@ -460,6 +472,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="acosh"/>
                                                 <connections>
                                                     <action selector="trigonometryOperations:" destination="bD4-m2-Oz1" eventType="touchUpInside" id="vVD-zu-rCI"/>
                                                 </connections>
@@ -472,6 +485,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
+                                                <state key="selected" title="atanh"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.radiusRound">
                                                         <integer key="value" value="50"/>
