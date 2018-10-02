@@ -20,6 +20,15 @@
 
 @implementation CalcModel
 
+-(instancetype)init{
+    self = [super init];
+    if(self){
+        self.memory = 0;
+        self.accumulator = 0;
+    }
+    return self;
+}
+
 -(void) setOperand: (double)operand{
     self.memory = operand;
     self.accumulator = operand;
@@ -30,7 +39,7 @@
 }
 
 -(double) inverseOperation: (double) operand{
-    return -(operand);
+    return operand * -1;
 }
 
 -(double) squareOperation:(double)operand{

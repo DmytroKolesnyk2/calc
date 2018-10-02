@@ -16,10 +16,11 @@
 - (IBAction)allClear:(UIButton *)button;
 - (IBAction)binaryOperation:(UIButton *)button;
 - (IBAction)secondPartOfScreenButton:(UIButton *)button;
-- (IBAction)num:(UIButton *)button;
+- (IBAction)numericButtons:(UIButton *)button;
 - (IBAction)dotPressed:(UIButton*)button;
-- (IBAction)changeRadiansToDegrees:(UIButton *)button;
 - (IBAction)trigonometryOperations: (UIButton*) button;
+- (IBAction)swipeLeftForDeleteLastEnteredNumberAction:(UISwipeGestureRecognizer*) swipe;
+
 
 @end
 
