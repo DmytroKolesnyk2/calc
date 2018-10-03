@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController{
-    
-}
+@interface ViewController : UIViewController
+
+@property (nonatomic, assign) BOOL isSecondButtonPressed;
 
 - (IBAction)unaryOperations:(UIButton *)button;
 - (IBAction)allClear:(UIButton *)button;

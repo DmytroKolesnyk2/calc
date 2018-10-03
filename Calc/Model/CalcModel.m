@@ -173,7 +173,7 @@
     _memory = 0;
     NSLog(@"memory: %f",_memory);
     NSLog(@"accumulator: %f", _accumulator);
-    return _accumulator;
+    return _memory;
 }
 
 -(double) memoryAddOperation:(double)operand{
@@ -196,7 +196,7 @@
     _accumulator = _memory;
     NSLog(@"memory: %f",_memory);
     NSLog(@"accumulator: %f", _accumulator);
-    return _accumulator;
+    return _memory;
 }
 
 

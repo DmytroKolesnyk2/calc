@@ -14,21 +14,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 
 @property (strong, nonatomic) CalculatorController *controller;
+//@property (strong, nonatomic) SecondButtonViewController *sbController;
 
 @end
 
 @implementation ViewController
 
--(CalculatorController*)controller{
-    if (!_controller) {
-        _controller = [CalculatorController new];
-    }
-    return _controller;
-}
-
 - (void)viewDidLoad {
-    [self controller];
     [super viewDidLoad];
+    _controller = [[CalculatorController alloc] initWithView:self];
     self.displayLabel.userInteractionEnabled = YES;
 }
 
@@ -51,15 +45,18 @@
 }
 
 - (IBAction)secondPartOfScreenButton:(UIButton *)button {
+
     if (!button.isSelected) {
         [button setSelected: YES];
         button.backgroundColor = UIColor.lightGrayColor;
         button.tintColor = UIColor.lightGrayColor;
+        [_controller secondButton];
         [self changeButtonState: button];
     } else {
         [button setSelected: NO];
         button.backgroundColor = UIColor.viewFlipsideBackgroundColor;
         button.tintColor = UIColor.viewFlipsideBackgroundColor;
+        [_controller secondButton];
         [self changeButtonState: button];
     }
 }
@@ -75,6 +72,8 @@
             [button setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
         } else {
             [button setSelected:NO];
+            _isSecondButtonPressed = NO;
+
         }
     }
 }

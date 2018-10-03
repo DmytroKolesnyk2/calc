@@ -43,17 +43,7 @@ enum{
     hyperbolicCosinus = 45,
     hyperbolicTangent = 46,
     pi = 47,
-    randomNumber = 48,
-    yPowerOfX = 51,
-    twoPowerOfX = 52,
-    logarithmY = 53,
-    logarithmTwo = 54,
-    arcSinus = 55,
-    arcCosinus = 56,
-    arcTangent = 57,
-    hyperbolicArcSinus = 58,
-    hyperbolicArcCosinus = 59,
-    hyperbolicArcTangent = 50
+    randomNumber = 48
 };
 
 @interface CalculatorController()
@@ -76,7 +66,6 @@ enum{
 @property (strong, nonatomic) NSString* inputNumber;
 
 @property (strong, nonatomic) CalcModel *model;
-@property (weak, nonatomic) ViewController* view;
 
 @end
 
@@ -89,18 +78,19 @@ enum{
     }
     return self;
 }
+
 -(void) setOperand: (double)operand{
     self.inputDigitFirst = operand;
 }
 
 -(NSString*)allClearButton{
+    _inputNumber = @"0";
     _inputDigitFirst = 0;
     _inputDigitSecond = 0;
     _dotCounter = 0;
     _doubleOperation = NO;
     
-    
-    return @(_inputDigitFirst).stringValue;
+    return _inputNumber;
 }
 
 -(NSString*)unaryOperationsButton:(NSInteger) buttonTag{
@@ -124,24 +114,24 @@ enum{
             _inputNumber = @([_model cubeOperation: _inputDigitFirst]).stringValue;
             break;
         case exponentaPower:
-            _inputNumber = @([_model exponentaPowerOperation: _inputDigitFirst]).stringValue;
+            if (!_isSecondDisplayButtonPressed) {
+                _inputNumber = @([_model exponentaPowerOperation: _inputDigitFirst]).stringValue;
+            }
             break;
         case tenPower:
-            _inputNumber = @([_model twoPowerOfXOperation: _inputDigitFirst]).stringValue;
+            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model tenPowerOperation: _inputDigitFirst]).stringValue : @([_model twoPowerOfXOperation: _inputDigitFirst]).stringValue;
             break;
-        case twoPowerOfX:
-            _inputNumber = @([_model twoPowerOfXOperation:_inputDigitFirst]).stringValue;
         case oneDivideX:
             _inputNumber = @([_model oneDivideXOperation: _inputDigitFirst]).stringValue;
             break;
         case naturalLogarithm:
-            _inputNumber = @([_model naturalLogarithmOperation: _inputDigitFirst]).stringValue;
+            if (!_isSecondDisplayButtonPressed) {
+                _inputNumber = @([_model naturalLogarithmOperation: _inputDigitFirst]).stringValue;
+            }
             break;
         case tenLogarithm:
-            _inputNumber = @([_model tenLogarithmOperation: _inputDigitFirst]).stringValue;
+            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model tenLogarithmOperation: _inputDigitFirst]).stringValue : @([_model twoLogarithmOperation: _inputDigitFirst]).stringValue;
             break;
-        case logarithmTwo:
-            _inputNumber = @([_model twoLogarithmOperation:_inputDigitFirst]).stringValue;
         case factorial:
             _inputNumber = @([_model factorialOperation: _inputDigitFirst]).stringValue;
             break;
@@ -161,7 +151,6 @@ enum{
             _inputNumber = @([_model memoryRecallOperation]).stringValue;
             break;
     }
-    _inputDigitFirst = _inputNumber.doubleValue;
     return _inputNumber;
 }
 
@@ -173,11 +162,15 @@ enum{
         //        если нажато равно
         if (!_operationEnter) {
             switch (_operationBinary) {
-                case logarithmY:
-                    _inputNumber = @([_model yLogarithmOperation: _inputDigitFirst]).stringValue;
+                case exponentaPower:
+                    if (_isSecondDisplayButtonPressed) {
+                        _inputNumber = @([_model yPowerOfXOperation: _inputDigitFirst]).stringValue;
+                    }
                     break;
-                case yPowerOfX:
-                    _inputNumber = @([_model yPowerOfXOperation: _inputDigitFirst]).stringValue;
+                case naturalLogarithm:
+                    if (_isSecondDisplayButtonPressed) {
+                        _inputNumber = @([_model yLogarithmOperation: _inputDigitFirst]).stringValue;
+                    }
                     break;
                 case plus:
                     _inputNumber = @([_model operationPlus: _inputDigitFirst]).stringValue;
@@ -221,42 +214,30 @@ enum{
 }
 
 -(NSString*)trigonometryOperationsButton: (NSInteger) buttonTag{
+    _inputDigitFirst = _inputNumber.doubleValue;
     _operationTrigonometry = buttonTag;
     switch (_operationTrigonometry) {
         case sinus:
-            _inputNumber = @([_model sinusOperation: _inputDigitFirst]).stringValue;
+            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model arcsinOperation:_inputDigitFirst]).stringValue : @([_model sinusOperation: _inputDigitFirst]).stringValue;
             break;
-        case arcSinus:
-            _inputNumber = @([_model arcsinOperation:_inputDigitFirst]).stringValue;
         case cosinus:
-            _inputNumber = @([_model cosinusOperation: _inputDigitFirst]).stringValue;
+            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model arccosOperation:_inputDigitFirst]).stringValue : @([_model cosinusOperation: _inputDigitFirst]).stringValue;
             break;
-        case arcCosinus:
-            _inputNumber = @([_model arccosOperation:_inputDigitFirst]).stringValue;
         case tangent:
-            _inputNumber = @([_model tangentOperation: _inputDigitFirst]).stringValue;
+            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model arctangentOperation:_inputDigitFirst]).stringValue : @([_model tangentOperation: _inputDigitFirst]).stringValue;
             break;
-        case arcTangent:
-            _inputNumber = @([_model arctangentOperation:_inputDigitFirst]).stringValue;
         case hyperbolicSinus:
-            _inputNumber = @([_model hyperbolicSinusOperation: _inputDigitFirst]).stringValue;
+            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model hyperbolicArcsinOperation:_inputDigitFirst]).stringValue : @([_model hyperbolicSinusOperation: _inputDigitFirst]).stringValue;
             break;
-        case hyperbolicArcSinus:
-            _inputNumber = @([_model hyperbolicArcsinOperation:_inputDigitFirst]).stringValue;
         case hyperbolicCosinus:
-            _inputNumber = @([_model hyperbolicCosinusOperation: _inputDigitFirst]).stringValue;
+            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model hyperbolicArccosOperation:_inputDigitFirst]).stringValue : @([_model hyperbolicCosinusOperation: _inputDigitFirst]).stringValue;
             break;
-        case hyperbolicArcCosinus:
-            _inputNumber = @([_model hyperbolicArccosOperation:_inputDigitFirst]).stringValue;
         case hyperbolicTangent:
-            _inputNumber = @([_model hyperbolicTangentOperation: _inputDigitFirst]).stringValue;
+            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model hyperbolicArctanOperation:_inputDigitFirst]).stringValue : @([_model hyperbolicTangentOperation: _inputDigitFirst]).stringValue;
             break;
-        case hyperbolicArcTangent:
-            _inputNumber = @([_model hyperbolicArctanOperation:_inputDigitFirst]).stringValue;
         default:
             break;
     }
-    _inputDigitFirst = _inputNumber.doubleValue;
     return _inputNumber;
 }
 
@@ -269,6 +250,10 @@ enum{
         _inputNumber = newResult;
     }
     return _inputNumber;
+}
+
+-(void)secondButton{
+    _isSecondDisplayButtonPressed = !_isSecondDisplayButtonPressed;
 }
 
 - (NSString*)dotPressed:(NSInteger)buttonTag{
@@ -291,7 +276,7 @@ enum{
 - (NSString*)numericButton:(NSInteger)buttonTag andLabel:(NSString*) label{
     
     //    нажато равно
-    if (_operationEnter){
+    if (_operationEnter || _operationTrigonometry || _operationUnary){
         
         _dotCounter = 0;
         _isOperationEntered = YES;
@@ -310,6 +295,7 @@ enum{
             _isOperationEntered = NO;
             [self enteredValueOperation:buttonTag fromLabel:label];
     } else {
+        //количество знаков не более 7
         if (label.length < 7) {
             if ([label isEqualToString:@"0"]) {
                 label = @"";

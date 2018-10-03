@@ -6,7 +6,12 @@
 //  Copyright © 2018 Dmitriy Kolesnyk. All rights reserved.
 //
 
+#import "ViewController.h"
+
 @interface CalculatorController : NSObject
+
+-(instancetype)init;
+-(instancetype)initWithView:(ViewController*)view;
 
 -(void) setOperand: (double)operand;
 -(NSString*)allClearButton;
@@ -16,6 +21,8 @@
 -(NSString*) enteredValueOperation:(NSInteger) buttonTag fromLabel:(NSString*)label;
 -(NSString*)numericButton:(NSInteger)buttonTag andLabel:(NSString*) label;
 -(NSString*)dotPressed:(NSInteger)buttonTag;
+-(void)secondButton;
+
 
 -(NSString*)swipeAction:(NSString*) receivedNumber;
 

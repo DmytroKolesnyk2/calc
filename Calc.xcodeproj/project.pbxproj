@@ -65,22 +65,46 @@
 		685FAB6C21426EC700944C0A /* Calc */ = {
 			isa = PBXGroup;
 			children = (
-				689C92A521490B7500433C51 /* CalcModel.h */,
-				689C92A621490B7500433C51 /* CalcModel.m */,
-				68B12E2F215EB731001D7D16 /* CalculatorController.h */,
-				68B12E30215EB755001D7D16 /* CalculatorController.m */,
+				68B12E342164A5CF001D7D16 /* View */,
+				68B12E332164A5BA001D7D16 /* Controller */,
+				68B12E322164A5A5001D7D16 /* Model */,
 				685FAB6D21426EC700944C0A /* AppDelegate.h */,
 				685FAB6E21426EC700944C0A /* AppDelegate.m */,
-				685FAB7021426EC700944C0A /* ViewController.h */,
-				685FAB7121426EC700944C0A /* ViewController.m */,
 				685FAB7321426EC700944C0A /* Main.storyboard */,
 				685FAB7621426EC900944C0A /* Assets.xcassets */,
 				685FAB7B21426EC900944C0A /* Info.plist */,
 				685FAB7C21426EC900944C0A /* main.m */,
+			);
+			path = Calc;
+			sourceTree = "<group>";
+		};
+		68B12E322164A5A5001D7D16 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				689C92A521490B7500433C51 /* CalcModel.h */,
+				689C92A621490B7500433C51 /* CalcModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		68B12E332164A5BA001D7D16 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				68B12E2F215EB731001D7D16 /* CalculatorController.h */,
+				68B12E30215EB755001D7D16 /* CalculatorController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		68B12E342164A5CF001D7D16 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				685FAB7021426EC700944C0A /* ViewController.h */,
+				685FAB7121426EC700944C0A /* ViewController.m */,
 				689F9E09215D00F4009939DA /* RoundViewController.m */,
 				689F9E0B215D0122009939DA /* RoundViewController.h */,
 			);
-			path = Calc;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
