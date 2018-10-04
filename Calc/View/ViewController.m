@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 
 @property (strong, nonatomic) CalculatorController *controller;
-//@property (strong, nonatomic) SecondButtonViewController *sbController;
 
 @end
 
@@ -44,21 +43,26 @@
     _displayLabel.text = [_controller trigonometryOperationsButton:[button tag]];
 }
 
-- (IBAction)secondPartOfScreenButton:(UIButton *)button {
-
+-(void)buttonSelectedMethod:(UIButton*)button{
+    
     if (!button.isSelected) {
         [button setSelected: YES];
         button.backgroundColor = UIColor.lightGrayColor;
         button.tintColor = UIColor.lightGrayColor;
-        [_controller secondButton];
-        [self changeButtonState: button];
+        
     } else {
+        
         [button setSelected: NO];
         button.backgroundColor = UIColor.viewFlipsideBackgroundColor;
         button.tintColor = UIColor.viewFlipsideBackgroundColor;
-        [_controller secondButton];
-        [self changeButtonState: button];
+        
     }
+}
+
+- (IBAction)secondPartOfScreenButton:(UIButton *)button {
+    [self buttonSelectedMethod:button];
+    [_controller secondButton];
+    [self changeButtonState: button];
 }
 
 - (void) changeButtonState: (UIButton*)button {
@@ -67,15 +71,18 @@
         button = [self.view viewWithTag: buttonTag.integerValue];
         if (!button.isSelected) {
             [button setSelected:YES];
-            button.backgroundColor = UIColor.viewFlipsideBackgroundColor;
             button.tintColor = UIColor.viewFlipsideBackgroundColor;
             [button setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
         } else {
             [button setSelected:NO];
-            _isSecondButtonPressed = NO;
-
         }
     }
+}
+
+-(IBAction)radianToDegreesAndViceVersaButton:(UIButton *)button{
+    [self buttonSelectedMethod:button];
+    [_controller radianPressed];
+    
 }
 
 //нажатие точки

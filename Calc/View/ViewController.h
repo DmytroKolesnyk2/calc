@@ -10,8 +10,6 @@
 
 @interface ViewController : UIViewController
 
-@property (nonatomic, assign) BOOL isSecondButtonPressed;
-
 - (IBAction)unaryOperations:(UIButton *)button;
 - (IBAction)allClear:(UIButton *)button;
 - (IBAction)binaryOperation:(UIButton *)button;
@@ -20,7 +18,7 @@
 - (IBAction)dotPressed:(UIButton*)button;
 - (IBAction)trigonometryOperations: (UIButton*) button;
 - (IBAction)swipeLeftForDeleteLastEnteredNumberAction:(UISwipeGestureRecognizer*) swipe;
-
+- (IBAction)radianToDegreesAndViceVersaButton:(UIButton*) button;
 
 @end
 

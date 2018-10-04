@@ -66,10 +66,19 @@ enum{
 @property (strong, nonatomic) NSString* inputNumber;
 
 @property (strong, nonatomic) CalcModel *model;
+@property (weak, nonatomic) ViewController *view;
 
 @end
 
 @implementation CalculatorController
+
+-(instancetype)initWithView:(ViewController *)view{
+    self = [self init];
+    if(self){
+        _view = view;
+    }
+    return self;
+}
 
 -(instancetype)init{
     self = [super init];
@@ -218,22 +227,46 @@ enum{
     _operationTrigonometry = buttonTag;
     switch (_operationTrigonometry) {
         case sinus:
-            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model arcsinOperation:_inputDigitFirst]).stringValue : @([_model sinusOperation: _inputDigitFirst]).stringValue;
+            if (!_isRadButtonPressed) {
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model arcsinOperationDegrees:_inputDigitFirst]).stringValue : @([_model sinusOperationDegrees: _inputDigitFirst]).stringValue;
+            } else{
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model arcsinOperationRadian:_inputDigitFirst]).stringValue : @([_model sinusOperationRadian: _inputDigitFirst]).stringValue;
+            }
             break;
         case cosinus:
-            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model arccosOperation:_inputDigitFirst]).stringValue : @([_model cosinusOperation: _inputDigitFirst]).stringValue;
+            if (!_isRadButtonPressed) {
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model arccosOperationDegrees:_inputDigitFirst]).stringValue : @([_model cosinusOperationDegrees: _inputDigitFirst]).stringValue;
+            } else{
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model arccosOperationRadian:_inputDigitFirst]).stringValue : @([_model cosinusOperationRadian: _inputDigitFirst]).stringValue;
+            }
             break;
         case tangent:
-            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model arctangentOperation:_inputDigitFirst]).stringValue : @([_model tangentOperation: _inputDigitFirst]).stringValue;
+            if (!_isRadButtonPressed) {
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model arctangentOperationDegrees: _inputDigitFirst]).stringValue : @([_model tangentOperationDegrees: _inputDigitFirst]).stringValue;
+            } else{
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model arctangentOperationRadian:_inputDigitFirst]).stringValue : @([_model tangentOperationRadian: _inputDigitFirst]).stringValue;
+            }
             break;
         case hyperbolicSinus:
-            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model hyperbolicArcsinOperation:_inputDigitFirst]).stringValue : @([_model hyperbolicSinusOperation: _inputDigitFirst]).stringValue;
+            if (!_isRadButtonPressed) {
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model hyperbolicArcsinOperationDegrees:_inputDigitFirst]).stringValue : @([_model hyperbolicSinusOperationDegrees: _inputDigitFirst]).stringValue;
+            } else{
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model hyperbolicArcsinOperationRadian:_inputDigitFirst]).stringValue : @([_model hyperbolicSinusOperationRadian: _inputDigitFirst]).stringValue;
+            }
             break;
         case hyperbolicCosinus:
-            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model hyperbolicArccosOperation:_inputDigitFirst]).stringValue : @([_model hyperbolicCosinusOperation: _inputDigitFirst]).stringValue;
+            if (!_isRadButtonPressed) {
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model hyperbolicArccosOperationDegrees:_inputDigitFirst]).stringValue : @([_model hyperbolicCosinusOperationDegrees: _inputDigitFirst]).stringValue;
+            } else{
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model hyperbolicArccosOperationRadian:_inputDigitFirst]).stringValue : @([_model hyperbolicCosinusOperationRadian: _inputDigitFirst]).stringValue;
+            }
             break;
         case hyperbolicTangent:
-            _inputNumber = !_isSecondDisplayButtonPressed ? @([_model hyperbolicArctanOperation:_inputDigitFirst]).stringValue : @([_model hyperbolicTangentOperation: _inputDigitFirst]).stringValue;
+            if (!_isRadButtonPressed) {
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model hyperbolicArctanOperationDegrees:_inputDigitFirst]).stringValue : @([_model hyperbolicTangentOperationDegrees: _inputDigitFirst]).stringValue;
+            } else{
+                _inputNumber = _isSecondDisplayButtonPressed ? @([_model hyperbolicArctanOperationRadian:_inputDigitFirst]).stringValue : @([_model hyperbolicTangentOperationRadian: _inputDigitFirst]).stringValue;
+            }
             break;
         default:
             break;
@@ -254,6 +287,10 @@ enum{
 
 -(void)secondButton{
     _isSecondDisplayButtonPressed = !_isSecondDisplayButtonPressed;
+}
+
+-(void)radianPressed{
+    _isRadButtonPressed = !_isRadButtonPressed;
 }
 
 - (NSString*)dotPressed:(NSInteger)buttonTag{
@@ -284,6 +321,8 @@ enum{
         _inputDigitSecond = _inputDigitFirst;
         _inputDigitFirst = 0;
         label = @" ";
+        _operationTrigonometry = NO;
+        _operationUnary = NO;
         _operationEnter = NO;
     }
     

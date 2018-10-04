@@ -21,8 +21,10 @@
 -(NSString*) enteredValueOperation:(NSInteger) buttonTag fromLabel:(NSString*)label;
 -(NSString*)numericButton:(NSInteger)buttonTag andLabel:(NSString*) label;
 -(NSString*)dotPressed:(NSInteger)buttonTag;
--(void)secondButton;
+-(NSString*)radianToDegreesAndViceVersaButton:(NSInteger) buttonTag;
 
+-(void)secondButton;
+-(void)radianPressed;
 
 -(NSString*)swipeAction:(NSString*) receivedNumber;
 

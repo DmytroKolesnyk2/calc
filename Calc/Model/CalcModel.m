@@ -34,6 +34,8 @@
     self.accumulator = operand;
 }
 
+#pragma mark Basic unary operations
+
 -(double) percentOperation: (double) operand{
     return operand * 0.01;
 }
@@ -41,6 +43,8 @@
 -(double) inverseOperation: (double) operand{
     return operand * -1;
 }
+
+#pragma mark Root and power operations
 
 -(double) squareOperation:(double)operand{
     return pow(operand, 2);
@@ -50,16 +54,8 @@
     return pow(operand, 3);
 }
 
--(double)exponentaPowerOperation: (double) operand{
-    return pow(M_E, operand);
-}
-
 -(double)tenPowerOperation: (double) operand{
     return pow(10, operand);
-}
-
--(double)oneDivideXOperation: (double) operand{
-    return 1 / operand;
 }
 
 -(double)squareRootOperation: (double) operand{
@@ -70,6 +66,40 @@
     return  pow(operand, 1.0f/3.0f);
 }
 
+-(double)exponentaPowerOperation: (double) operand{
+    return pow(M_E, operand);
+}
+
+-(double) powerOperation:(double)operand{
+    return pow(_accumulator, operand);
+}
+
+-(double) yRootOfXOperation:(double)operand{
+    return  pow(_accumulator, 1.0f/operand);
+}
+
+-(double) EEOperation:(double)operand{
+    return _accumulator * pow(10, operand);
+}
+
+-(double)yPowerOfXOperation:(double)operand{
+    return pow(operand, _accumulator);
+}
+
+-(double)twoPowerOfXOperation:(double)operand{
+    return pow(2, operand);
+}
+
+
+#pragma mark Reciprocal operation
+
+-(double)oneDivideXOperation: (double) operand{
+    return 1 / operand;
+}
+
+
+#pragma Logarithm operations
+
 -(double)naturalLogarithmOperation: (double) operand{
     return log(operand);
 }
@@ -78,68 +108,89 @@
     return log10(operand);
 }
 
+-(double)yLogarithmOperation:(double)operand{
+    return log(_accumulator)/log(operand);
+}
+
+-(double)twoLogarithmOperation:(double)operand{
+    return log2(operand);
+}
+
+#pragma mark Factorial operation
+
 -(double)factorialOperation: (double) operand{
     return tgammaf(++operand);
 }
 
--(double)sinusOperation: (double) operand{
+#pragma mark trigonometry operations in degrees
+
+-(double)sinusOperationDegrees: (double) operand{
     return sin(RADIANS(operand));
 }
 
--(double)arcsinOperation: (double) operand{
+-(double)arcsinOperationDegrees: (double) operand{
     return DEGREES(asin(operand));
 }
 
--(double)cosinusOperation: (double) operand{
+-(double)cosinusOperationDegrees:(double)operand{
     return cos(RADIANS(operand));
 }
 
--(double)arccosOperation: (double) operand{
+-(double)arccosOperationDegrees: (double) operand{
     return DEGREES(acos(operand));
 }
 
--(double)tangentOperation: (double) operand{
+-(double)tangentOperationDegrees: (double) operand{
     return tan(RADIANS(operand));
 }
 
--(double)arctangentOperation: (double) operand{
+-(double)arctangentOperationDegrees: (double) operand{
     return DEGREES(atan(operand));
 }
+
+-(double)hyperbolicSinusOperationDegrees: (double) operand{
+    return sinh(operand);
+}
+
+-(double)hyperbolicArcsinOperationDegrees: (double) operand{
+    return asinh(operand);
+}
+
+-(double)hyperbolicCosinusOperationDegrees: (double) operand{
+    return cosh(operand);
+}
+
+-(double)hyperbolicArccosOperationDegrees:(double)operand{
+    return acosh(operand);
+}
+
+-(double)hyperbolicTangentOperationDegrees: (double) operand{
+    return tanh(operand);
+}
+
+-(double)hyperbolicArctanOperationDegrees:(double)operand{
+    return atanh(operand);
+}
+
+
+#pragma mark Constant PI and E
 
 -(double)exponentaOperation{
     return M_E;
 }
 
--(double)hyperbolicSinusOperation: (double) operand{
-    return sinh(operand);
-}
-
--(double)hyperbolicArcsinOperation: (double) operand{
-    return asinh(operand);
-}
-
--(double)hyperbolicCosinusOperation: (double) operand{
-    return cosh(operand);
-}
-
--(double)hyperbolicArccosOperation:(double)operand{
-    return acosh(operand);
-}
-
--(double)hyperbolicTangentOperation: (double) operand{
-    return tanh(operand);
-}
-
--(double)hyperbolicArctanOperation:(double)operand{
-    return atanh(operand);
-}
-
 -(double)piOperation{
     return M_PI;
 }
+
+
+#pragma mark Randomizer
+
 -(double)randomNumberOperation{
     return drand48();
 }
+
+#pragma mark Basic binary operations
 
 -(double) operationPlus: (double) operand{
     return _accumulator + operand;
@@ -157,17 +208,59 @@
     return _accumulator * operand;
 }
 
--(double) powerOperation:(double)operand{
-    return pow(_accumulator, operand);
+#pragma mark Trigonometry operations with radians
+
+-(double)sinusOperationRadian:(double)operand{
+    return sin(operand);
 }
 
--(double) yRootOfXOperation:(double)operand{
-    return  pow(_accumulator, 1.0f/operand);
+-(double)cosinusOperationRadian:(double)operand{
+    return cos(operand);
 }
 
--(double) EEOperation:(double)operand{
-    return _accumulator * pow(10, operand);
+-(double)tangentOperationRadian:(double)operand{
+    return tan(operand);
 }
+
+-(double)arcsinOperationRadian: (double) operand{
+    return asin(operand);
+}
+
+-(double)arccosOperationRadian: (double) operand{
+    return acos(operand);
+}
+
+-(double)arctangentOperationRadian: (double) operand{
+    return atan(operand);
+}
+
+-(double)hyperbolicSinusOperationRadian: (double) operand{
+    return sinh(operand);
+}
+
+-(double)hyperbolicCosinusOperationRadian: (double) operand{
+    return cosh(operand);
+}
+
+-(double)hyperbolicTangentOperationRadian: (double) operand{
+    return tanh(operand);
+}
+
+-(double)hyperbolicArcsinOperationRadian: (double) operand{
+    return asinh(operand);
+}
+
+-(double)hyperbolicArccosOperationRadian:(double)operand{
+    return acosh(operand);
+}
+
+-(double)hyperbolicArctanOperationRadian:(double)operand{
+    return atanh(operand);
+}
+
+
+
+#pragma mark MemoryOperations
 
 -(double) memoryCleanOperation{
     _memory = 0;
@@ -197,23 +290,6 @@
     NSLog(@"memory: %f",_memory);
     NSLog(@"accumulator: %f", _accumulator);
     return _memory;
-}
-
-
--(double)yPowerOfXOperation:(double)operand{
-    return pow(operand, _accumulator);
-}
-
--(double)twoPowerOfXOperation:(double)operand{
-    return pow(2, operand);
-}
-
--(double)yLogarithmOperation:(double)operand{
-    return log(_accumulator)/log(operand);
-}
-
--(double)twoLogarithmOperation:(double)operand{
-    return log2(operand);
 }
 
 -(double)result{
