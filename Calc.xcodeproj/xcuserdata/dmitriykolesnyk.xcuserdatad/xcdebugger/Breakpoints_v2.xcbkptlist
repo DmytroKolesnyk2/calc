@@ -191,7 +191,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "309"
             endingLineNumber = "309"
-            landmarkName = "-dotPressed:"
+            landmarkName = "-swipeAction:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -44,18 +44,14 @@
 }
 
 -(void)buttonSelectedMethod:(UIButton*)button{
-    
     if (!button.isSelected) {
         [button setSelected: YES];
         button.backgroundColor = UIColor.lightGrayColor;
         button.tintColor = UIColor.lightGrayColor;
-        
     } else {
-        
         [button setSelected: NO];
         button.backgroundColor = UIColor.viewFlipsideBackgroundColor;
         button.tintColor = UIColor.viewFlipsideBackgroundColor;
-        
     }
 }
 
@@ -66,9 +62,12 @@
 }
 
 - (void) changeButtonState: (UIButton*)button {
+    
     NSArray *array = @[@29, @30, @35, @36, @38, @39, @40, @44, @45, @46];
+    
     for (NSNumber* buttonTag in array) {
         button = [self.view viewWithTag: buttonTag.integerValue];
+        
         if (!button.isSelected) {
             [button setSelected:YES];
             button.tintColor = UIColor.viewFlipsideBackgroundColor;
